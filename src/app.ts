@@ -1,8 +1,22 @@
+import cors from 'cors'
 import 'dotenv/config'
-import express, { request, response } from "express"
+import express from "express"
+import http from 'http'
+import { Server } from 'socket.io'
 import { router } from './routes'
 
 const app = express()
+app.use(cors())
+const httpServer = http.createServer(app)
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*'
+  }
+})
+
+io.on('connection', (socket) => {
+  console.log(`User connected on the socket ${socket.id}`)
+})
 
 app.use(express.json())
 
@@ -19,4 +33,4 @@ app.get('/signin/callback', (request, response) => {
 
 const port = process.env.PORT || 3000
 
-app.listen(port, () => console.log(`Server runing on http://localhost:${port}`))
+export { httpServer, io, port }

@@ -15,6 +15,19 @@ class UserController {
     }
 
   }
+
+  async handleGetUserProfile(request: Request, response: Response) {
+    const { user_id } = request
+
+    const service = new UserService()
+
+    try {
+      const result = await service.getUserProfile(user_id)
+      return response.json(result)
+    } catch (error) {
+      return response.json({ error: error.message })
+    }
+  }
 }
 
 export { UserController }
