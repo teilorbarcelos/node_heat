@@ -16,6 +16,19 @@ class UserController {
 
   }
 
+  async handleAuthMobile(request: Request, response: Response) {
+    const { code } = request.body
+
+    const service = new UserService()
+
+    try {
+      const result = await service.authenticate(code, true)
+      return response.json(result)
+    } catch (error) {
+      return response.json({ error: error.message })
+    }
+  }
+
   async handleGetUserProfile(request: Request, response: Response) {
     const { user_id } = request
 

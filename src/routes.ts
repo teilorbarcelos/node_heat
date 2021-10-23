@@ -14,6 +14,7 @@ router.get("/", (request: Request, response: Response) => {
   return response.json(message)
 })
 
+router.post("/mobileAuthenticate", new UserController().handleAuthMobile)
 router.post("/authenticate", new UserController().handleAuth)
 router.get("/userProfile", onlyAuth, new UserController().handleGetUserProfile)
 router.post("/messageCreate", onlyAuth, new MessageController().handleCreate)
