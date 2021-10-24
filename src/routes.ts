@@ -8,7 +8,7 @@ const router = Router()
 router.get("/", (request: Request, response: Response) => {
   const message = {
     message: "API created on NLW7 (HEAT) event by Rocketseat Author: Teilor Souza Barcelos",
-    supportedRoutes: `/authenticate, /userProfile, /messageCreate, /getLast3Messages`,
+    supportedRoutes: `/authenticate, /mobileAuthenticate, /userProfile, /messageCreate, /getLast3Messages`,
     repository: 'https://github.com/teilorbarcelos/node_heat'
   }
   return response.json(message)
